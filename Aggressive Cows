@@ -1,0 +1,102 @@
+//Aggresive Cows
+/*problem statement - Farmer John has built a new long barn, with N (2 <= N <= 100,000) stalls. The stalls are located along
+a straight line at positions x1,...,xN (0 <= xi <= 1,000,000,000).His C (2 <= C <= N) cows don't like this barn layout and
+become aggressive towards each other once put into a stall. To prevent the cows from hurting each other, FJ wants to assign
+the cows to the stalls, such that the minimum distance between any two of them is as large as possible.
+What is the largest minimum distance?
+
+Example -  
+inp - 1,2,8,4,9
+o/p- 3
+*/
+package ps_1;
+import java.util.*;
+public class Agressive_cows {
+
+	public static void main(String[] args) {
+		int max_ele = -1;
+		
+		Scanner inp = new Scanner(System.in);
+		int n = inp.nextInt();
+		int num_cows = inp.nextInt();
+		int[] a = new int[n];
+		
+		for(int i=0;i<n;i++)
+		{
+			a[i] = inp.nextInt();
+			max_ele = Math.max(max_ele,a[i]);
+			
+		}
+		
+		Arrays.sort(a);
+		
+		int low = 0;
+		int high = max_ele;
+		int mid = 0;
+		while(low<=high)
+		{
+			
+			mid = (low+high)/2;
+			
+			boolean decision = check_value(a,mid,n,num_cows);
+			
+			if(decision == true) {
+				
+				low = mid + 1;
+			}
+			else
+			{
+				
+				high = mid -1;
+				
+			}
+			;
+		}
+		
+		
+		System.out.println("The ans is " + mid);
+		
+
+	}
+	
+public static boolean check_value(int a[],int mid,int n,int num_cows)
+{	int index = 0,k = 0,flag = 0;;
+
+	while(index<n)
+	{
+		int sum = a[index] + mid;
+		while(a[index] < sum)
+		{	
+			index = index + 1;
+			if(index >= n)
+			{	flag = 1;
+				break;
+			}
+		}
+		
+		if(flag!=1)
+		{
+			k++;	
+		}
+		
+		
+	}
+	System.out.println(k);
+	
+	if(k < (num_cows - 1))
+	{
+		return false;
+		
+	}
+	return true;
+	
+	
+	
+	
+	
+}
+	
+	
+
+
+}
