@@ -9,7 +9,7 @@ Example -
 inp - 1,2,8,4,9
 o/p- 3
 */
-package ps_1;
+
 import java.util.*;
 public class Agressive_cows {
 
