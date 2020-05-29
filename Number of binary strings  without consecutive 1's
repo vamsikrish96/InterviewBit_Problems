@@ -1,0 +1,37 @@
+/*Given a positive integer N, count all possible distinct binary strings of length N such that there are no consecutive 1’s.
+Examples:
+
+Input:  N = 2
+Output: 3
+// The 3 strings are 00, 01, 10
+*/
+
+import java.util.*;
+public class B_String_with_no_1 {
+
+
+	public static void main(String[] args) {
+		
+		
+		Scanner inp = new Scanner(System.in);
+		int n = inp.nextInt();
+		int m = 1000000007;
+		int[] W_1 = new int[n+1] ;
+		int[] W_0 = new int[n+1] ;
+		
+		W_1[1] = 1;
+		W_0[1] = 1;
+		for(int i =2;i<=n;i++)
+		{
+			W_1[i] = (W_0[i-1])%m;
+			
+			W_0[i] = (W_0[i-1] + W_1[i-1])%m;
+		}
+		
+	
+		
+		System.out.println(((W_1[n] + W_0[n])%m));
+
+	}
+
+}
